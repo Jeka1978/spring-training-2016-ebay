@@ -8,6 +8,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 /**
@@ -20,33 +23,39 @@ public class ObjectFactory {
         return ourInstance;
     }
 
+    private List<ObjectConfigurer> objectConfigurers = new ArrayList<>();
+
     private Config config = new JavaConfig();
     private Reflections reflections = new Reflections("mySpring");
 
     private ObjectFactory() {
+        Set<Class<? extends ObjectConfigurer>> classes = reflections.getSubTypesOf(ObjectConfigurer.class);
+        for (Class<? extends ObjectConfigurer> aClass : classes) {
+            if (!Modifier.isAbstract(aClass.getModifiers())) {
+                try {
+                    objectConfigurers.add(aClass.newInstance());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
     }
 
     public <T> T createObject(Class<T> type) throws Exception {
 
         type = resolveImplClass(type);
         T t = type.newInstance();
-
+        configure(t);
 
 
         return t;
     }
 
-
-
-
-
-
-
-
-
-
-
-
+    private <T> void configure(T t) throws IllegalAccessException {
+        for (ObjectConfigurer objectConfigurer : objectConfigurers) {
+            objectConfigurer.configure(t);
+        }
+    }
 
 
     private <T> Class<T> resolveImplClass(Class<T> type) {
