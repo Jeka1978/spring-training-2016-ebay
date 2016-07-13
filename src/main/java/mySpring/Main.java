@@ -5,8 +5,11 @@ package mySpring;
  */
 public class Main {
     public static void main(String[] args) throws Exception {
-        EbayService ebayService = ObjectFactory.getInstance().createObject(EbayService.class);
+   /*     EbayServiceImpl ebayService = ObjectFactory.getInstance().createObject(EbayServiceImpl.class);
         ebayService.doWork();
         ebayService.drinkBeer();
+        System.out.println(ebayService.getClass());*/
+        IRobot iRobot = ObjectFactory.getInstance().createObject(IRobot.class);
+        iRobot.cleanRoom();
     }
 }

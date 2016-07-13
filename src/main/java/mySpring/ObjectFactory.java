@@ -56,14 +56,36 @@ public class ObjectFactory {
         T t = type.newInstance();
         configure(t);
         secondPhaseContructor(type, t);
-
-        for (ProxyConfigurer proxyConfigurer : proxyConfigurers) {
-            t = (T) proxyConfigurer.wrapWithProxy(t,type);
-        }
-
+        t = handleProxy(type, t);
         return t;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private <T> T handleProxy(Class<T> type, T t) {
+        for (ProxyConfigurer proxyConfigurer : proxyConfigurers) {
+            t = (T) proxyConfigurer.wrapWithProxy(t,type);
+        }
+        return t;
+    }
 
 
     private <T> void secondPhaseContructor(Class<T> type, T t) throws IllegalAccessException, InvocationTargetException {
