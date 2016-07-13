@@ -1,0 +1,20 @@
+package mySpring;
+
+/**
+ * Created by Evegeny on 13/07/2016.
+ */
+public class IRobot {
+    private Speaker speaker;
+    private Cleaner cleaner;
+
+    public IRobot() throws Exception {
+        speaker = ObjectFactory.getInstance().createObject(Speaker.class);
+        cleaner = ObjectFactory.getInstance().createObject(Cleaner.class);
+    }
+
+    public void cleanRoom() {
+        speaker.speak("I started my work");
+        cleaner.clean();
+        speaker.speak("I finished my work");
+    }
+}
