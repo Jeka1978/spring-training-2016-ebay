@@ -22,6 +22,7 @@ public class ObjectFactory {
     }
 
     private List<ObjectConfigurer> objectConfigurers = new ArrayList<>();
+    private List<ProxyConfigurer> proxyConfigurers = new ArrayList<>();
 
     private Config config = new JavaConfig();
     private Reflections reflections = new Reflections("mySpring");
@@ -37,6 +38,16 @@ public class ObjectFactory {
                 }
             }
         }
+        Set<Class<? extends ProxyConfigurer>> classes1 = reflections.getSubTypesOf(ProxyConfigurer.class);
+        for (Class<? extends ProxyConfigurer> aClass : classes1) {
+            if (!Modifier.isAbstract(aClass.getModifiers())) {
+                try {
+                    proxyConfigurers.add(aClass.newInstance());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
     }
 
     public <T> T createObject(Class<T> type) throws Exception {
@@ -45,6 +56,10 @@ public class ObjectFactory {
         T t = type.newInstance();
         configure(t);
         secondPhaseContructor(type, t);
+
+        for (ProxyConfigurer proxyConfigurer : proxyConfigurers) {
+            t = (T) proxyConfigurer.wrapWithProxy(t,type);
+        }
 
         return t;
     }
