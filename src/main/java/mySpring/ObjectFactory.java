@@ -51,7 +51,7 @@ public class ObjectFactory {
         return t;
     }
 
-    private <T> void configure(T t) throws IllegalAccessException {
+    private <T> void configure(T t) throws Exception {
         for (ObjectConfigurer objectConfigurer : objectConfigurers) {
             objectConfigurer.configure(t);
         }
