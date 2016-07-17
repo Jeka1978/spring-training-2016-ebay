@@ -13,8 +13,11 @@
 
     <bean class="quoters.TransactionalAnnotationBeanPostProcessor"/>
     <bean class="quoters.BenchmarkAnnotationBeanPostProcessor"/>
+    <bean class="quoters.BeanDefinitionAnalyzerBeanFactoryPostProcessor"/>
 
     <context:property-placeholder location="classpath:quotes.properties"/>
+
+
 
     <bean id="talkingRobot" class="quoters.TalkingRobotImpl">
         <constructor-arg name="quoters">
