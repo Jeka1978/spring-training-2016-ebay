@@ -1,5 +1,7 @@
 package mySpring;
 
+import org.springframework.scheduling.annotation.Scheduled;
+
 /**
  * Created by Evegeny on 13/07/2016.
  */
