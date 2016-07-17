@@ -1,5 +1,6 @@
 package quoters;
 
+import javax.annotation.PreDestroy;
 import java.util.List;
 
 /**
@@ -10,6 +11,11 @@ public class TerminatorQuoter implements Quoter {
 
     public void setMessages(List<String> messages) {
         this.messages = messages;
+    }
+
+    @PreDestroy
+    public void killAll(){
+        System.out.println("You are terminated...");
     }
 
     @Override

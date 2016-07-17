@@ -1,9 +1,15 @@
 package quoters;
 
+import mySpring.InjectRandomInt;
+
 /**
  * Created by Evegeny on 17/07/2016.
  */
 public class ShakespearQuoter implements Quoter {
+
+    @InjectRandomInt(min = 3, max = 5)
+    private int repeat;
+
     private String message;
 
     public void setMessage(String message) {
@@ -12,6 +18,8 @@ public class ShakespearQuoter implements Quoter {
 
     @Override
     public void sayQuote() {
-        System.out.println(message);
+        for (int i = 0; i < repeat; i++) {
+            System.out.println(message);
+        }
     }
 }

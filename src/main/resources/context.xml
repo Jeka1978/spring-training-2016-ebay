@@ -3,7 +3,13 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="talkingRobot" class="quoters.TalkingRobotImpl" init-method="talk">
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+
+    <bean id="anotherQuoter" class="java.lang.String">
+        <constructor-arg value="astalavista baby"/>
+    </bean>
+
+    <bean id="talkingRobot" class="quoters.TalkingRobotImpl">
         <constructor-arg name="quoters">
             <list>
                 <ref bean="shakespearQuoter"/>
@@ -11,10 +17,11 @@
             </list>
         </constructor-arg>
     </bean>
-    <bean id="terminatorQuoter" class="quoters.TerminatorQuoter">
+    <bean id="terminatorQuoter" class="quoters.TerminatorQuoter" scope="prototype">
         <property name="messages">
             <list>
                 <value>I'll be back</value>
+                <ref bean="anotherQuoter"/>
                 <value>Come with me if you want to live</value>
             </list>
         </property>
