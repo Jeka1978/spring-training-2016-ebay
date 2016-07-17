@@ -14,7 +14,7 @@ public class IRobotImpl implements IRobot {
 
     @PostConstruct
     public void init() {
-        System.out.println(speaker.getClass().getName());
+//        System.out.println(speaker.getClass().getName());
     }
 
     @Override

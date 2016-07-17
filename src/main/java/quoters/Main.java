@@ -8,8 +8,13 @@ import java.util.Collection;
  * Created by Evegeny on 17/07/2016.
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
-        context.close();
+//        TalkingRobot robot = context.getBean(TalkingRobot.class);
+
+       /* while (true) {
+            robot.talk();
+            Thread.sleep(500);
+        }*/
     }
 }
