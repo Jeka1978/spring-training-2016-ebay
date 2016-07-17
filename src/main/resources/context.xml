@@ -14,6 +14,7 @@
     <bean class="quoters.TransactionalAnnotationBeanPostProcessor"/>
     <bean class="quoters.BenchmarkAnnotationBeanPostProcessor"/>
     <bean class="quoters.BeanDefinitionAnalyzerBeanFactoryPostProcessor"/>
+    <bean class="quoters.DeprecatedReplacerBeanFactoryPostProcessor"/>
 
     <context:property-placeholder location="classpath:quotes.properties"/>
 
@@ -27,7 +28,7 @@
             </list>
         </constructor-arg>
     </bean>
-    <bean id="terminatorQuoter" class="quoters.TerminatorQuoter" scope="prototype" destroy-method="killAll">
+    <bean id="terminatorQuoter" class="quoters.TerminatorQuoter" destroy-method="killAll">
         <property name="messages">
             <list>
                 <value>I'll be back</value>

@@ -11,7 +11,6 @@ import java.util.List;
  */
 @Benchmark
 @Transcational
-@DeprecatedClass(T1000.class)
 public class TerminatorQuoter implements Quoter {
     private List<String> messages;
 
