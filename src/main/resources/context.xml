@@ -11,11 +11,7 @@
 
     <bean id="integer2" class="java.lang.Integer" factory-bean="integerFactory2" factory-method="getInt"/>
 
-    <context:component-scan base-package="screenSaver"/>
 
-    <bean class="screenSaver.ColorFrame">
-        <lookup-method name="getColorBean" bean="color"/>
-    </bean>
 
 
 

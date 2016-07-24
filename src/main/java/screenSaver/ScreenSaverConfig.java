@@ -9,20 +9,12 @@ import java.util.Random;
  * Created by Evegeny on 24/07/2016.
  */
 @Configuration
+@ComponentScan(basePackages = "screenSaver")
 public class ScreenSaverConfig {
 
-    @Bean
-    public ColorFrame colorFrame(){
-        return new ColorFrame() {
-            @Override
-            protected Color getColorBean() {
-                return color();
-            }
-        };
-    }
 
     @Bean
-    @Scope(value = "prototype",proxyMode = ScopedProxyMode.TARGET_CLASS)
+    @Scope(value = "twoSeconds",proxyMode = ScopedProxyMode.TARGET_CLASS)
     public Color color(){
         Random random = new Random();
         return new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255));

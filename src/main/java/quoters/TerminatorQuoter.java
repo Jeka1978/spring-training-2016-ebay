@@ -4,6 +4,7 @@ import mySpring.Benchmark;
 import mySpring.Transcational;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;

@@ -1,9 +1,8 @@
 package quoters;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import screenSaver.ScreenSaverConfig;
 
 import javax.annotation.PostConstruct;
 
@@ -14,6 +13,7 @@ import javax.annotation.PostConstruct;
 
 @PropertySource("classpath:quotes.properties")
 @Configuration
+@ComponentScan(basePackages = "quoters")
 public class Config {
 
     @PostConstruct

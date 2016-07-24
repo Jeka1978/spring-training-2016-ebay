@@ -15,7 +15,6 @@ import java.util.List;
 public class TalkingRobotImpl implements TalkingRobot {
 
     @Autowired(required = false)
-    @Book
     private List<Quoter> quoters = Arrays.asList(new Quoter() {
         @Override
         public void sayQuote() {
