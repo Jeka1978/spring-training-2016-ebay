@@ -7,16 +7,30 @@
     <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
     <bean class="quoters.InjectRandomIntAnnotationBeanPostProcessor"/>
 
+    <bean id="integerFactory2" class="quoters.IntegerFactory2"/>
+
+    <bean id="integer2" class="java.lang.Integer" factory-bean="integerFactory2" factory-method="getInt"/>
+
+
     <bean id="anotherQuoter" class="java.lang.String">
         <constructor-arg value="astalavista baby"/>
     </bean>
 
-    <bean class="quoters.TransactionalAnnotationBeanPostProcessor"/>
+
+    <bean id="integer" class="quoters.IntegerFactory">
+        <constructor-arg value="5"/>
+    </bean>
+
+
+
+    <context:component-scan base-package="quoters"/>
+
+    <bean class=" quoters.TransactionalAnnotationBeanPostProcessor"/>
     <bean class="quoters.BenchmarkAnnotationBeanPostProcessor"/>
     <bean class="quoters.BeanDefinitionAnalyzerBeanFactoryPostProcessor"/>
     <bean class="quoters.DeprecatedReplacerBeanFactoryPostProcessor"/>
 
-    <context:property-placeholder location="classpath:quotes.properties"/>
+    <context:property-placeholder location="classpath:quotes.properties,file://prod//prod.properties" ignore-resource-not-found="true"/>
 
 
 
