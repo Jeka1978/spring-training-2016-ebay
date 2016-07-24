@@ -11,16 +11,10 @@
 
     <bean id="integer2" class="java.lang.Integer" factory-bean="integerFactory2" factory-method="getInt"/>
 
+    <context:component-scan base-package="screenSaver"/>
 
-
-    <bean class="java.awt.Color" init-method="brighter">
-        <constructor-arg index="0" type="java.awt.color.ColorSpace" ref=""/>
-        <constructor-arg index="1" type="float[]">
-            <list>
-                <value></value>
-            </list>
-        </constructor-arg>
-        <constructor-arg index="2" type="float" value=""/>
+    <bean class="screenSaver.ColorFrame">
+        <lookup-method name="getColorBean" bean="color"/>
     </bean>
 
 
