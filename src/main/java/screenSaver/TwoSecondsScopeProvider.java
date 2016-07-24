@@ -1,5 +1,6 @@
 package screenSaver;
 
+import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import javafx.util.Pair;
 import org.springframework.beans.factory.ObjectFactory;
@@ -19,21 +20,21 @@ import static java.time.LocalDateTime.now;
  * Created by Evegeny on 24/07/2016.
  */
 public class TwoSecondsScopeProvider implements Scope {
-    /*{
-        CacheBuilder.newBuilder().expireAfterWrite(2, TimeUnit.SECONDS)
-    }*/
-    private Map<String, Pair<LocalDateTime,Object>> cache = new WeakHashMap<>();
+
+    private Cache<String, Object> cache;
+
+    {
+        cache = CacheBuilder.newBuilder().expireAfterWrite(2, TimeUnit.SECONDS).build();
+    }
     @Override
     public Object get(String name, ObjectFactory<?> objectFactory) {
-        if (!cache.containsKey(name)|| packtokef(name)) {
-            cache.put(name, new Pair<>(now(), objectFactory.getObject()));
+        if (!cache.asMap().containsKey(name)) {
+            cache.put(name, objectFactory.getObject());
         }
-        return cache.get(name).getValue();
+        return cache.asMap().get(name);
     }
 
-    private boolean packtokef(String name) {
-        return ChronoUnit.SECONDS.between(cache.get(name).getKey(), now())>2;
-    }
+   
 
 
     @Override
