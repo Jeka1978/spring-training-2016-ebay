@@ -8,6 +8,6 @@ import org.fluttercode.datafactory.impl.DataFactory;
 public class DBUtils {
     private static DataFactory dataFactory = new DataFactory();
     public static MailInfo getMailInfo() {
-        return new MailInfo(dataFactory.getName(), dataFactory.getNumberBetween(1, 3));
+        return new MailInfo(dataFactory.getName(), dataFactory.getNumberBetween(1, 5));
     }
 }
