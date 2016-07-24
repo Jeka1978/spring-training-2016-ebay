@@ -1,6 +1,7 @@
 package quoters;
 
 import mySpring.InjectRandomInt;
+import neveruseswitch.Log;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -23,6 +24,7 @@ public class ShakespearQuoter implements Quoter {
     }
 
     @Override
+    @Log
     public void sayQuote() {
         for (int i = 0; i < repeat; i++) {
             System.out.println(message);

@@ -14,15 +14,8 @@ import javax.annotation.PostConstruct;
 @PropertySource("classpath:quotes.properties")
 @Configuration
 @ComponentScan(basePackages = "quoters")
+@EnableAspectJAutoProxy
 public class Config {
 
-    @PostConstruct
-    public void x() {
-        System.out.println(123);
-    }
 
-    /*@Bean
-    public static PropertySourcesPlaceholderConfigurer configurer(){
-        return new PropertySourcesPlaceholderConfigurer();
-    }*/
 }

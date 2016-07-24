@@ -1,7 +1,9 @@
 package quoters;
 
+import com.google.common.annotations.Beta;
 import mySpring.Benchmark;
 import mySpring.Transcational;
+import neveruseswitch.Log;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.DependsOn;
@@ -36,6 +38,7 @@ public class TerminatorQuoter implements Quoter {
     }
 
     @Override
+    @Log
     public void sayQuote() {
         messages.forEach(System.out::println);
     }

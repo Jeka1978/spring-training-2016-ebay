@@ -1,5 +1,6 @@
 package quoters;
 
+import neveruseswitch.Log;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 @Book
 public class PushkinQuoter implements Quoter {
     @Override
+    @Log
     public void sayQuote() {
         System.out.println("Я помню чудное мгновенье");
     }
