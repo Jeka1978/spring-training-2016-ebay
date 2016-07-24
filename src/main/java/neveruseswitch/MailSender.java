@@ -6,6 +6,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,13 +16,24 @@ import java.util.Map;
 @Service
 public class MailSender {
 
+
+    private Map<Integer,MailGenerator> map = new HashMap<>();
+
     @Autowired
-    private Map<String,MailGenerator> map;
+    public void initMap(List<MailGenerator> mailGenerators) {
+        for (MailGenerator mailGenerator : mailGenerators) {
+            int mailCode = mailGenerator.mailCode();
+            if (map.containsKey(mailCode)) {
+                throw new RuntimeException("mailcode " + mailCode + " already in use");
+            }
+            map.put(mailCode, mailGenerator);
+        }
+    }
 
     @Scheduled(cron = "1/1 * * * * ?")
     public void sendMail(){
         MailInfo mailInfo = DBUtils.getMailInfo();
-        MailGenerator mailGenerator = map.get(Integer.toString(mailInfo.getMailCode()));
+        MailGenerator mailGenerator = map.get(mailInfo.getMailCode());
         if (mailGenerator == null) {
             throw new RuntimeException("mailcode " + mailInfo.getMailCode() + " not supported yet");
         }
