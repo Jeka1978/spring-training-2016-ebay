@@ -13,12 +13,13 @@ public class BeanDefinitionAnalyzerBeanFactoryPostProcessor implements BeanFacto
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         String[] names = beanFactory.getBeanDefinitionNames();
-        for (String name : names) {
+       /* for (String name : names) {
             GenericBeanDefinition beanDefinition = (GenericBeanDefinition) beanFactory.getBeanDefinition(name);
+
             if (beanDefinition.isPrototype() && beanDefinition.getDestroyMethodName() != null) {
                 System.out.println("WARNING you are an Idiot");
                 throw new RuntimeException("!!!");
             }
-        }
+        }*/
     }
 }

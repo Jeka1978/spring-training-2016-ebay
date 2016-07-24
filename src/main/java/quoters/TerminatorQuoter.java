@@ -2,8 +2,13 @@ package quoters;
 
 import mySpring.Benchmark;
 import mySpring.Transcational;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -11,15 +16,21 @@ import java.util.List;
  */
 @Benchmark
 @Transcational
+@Component
+@Book
 public class TerminatorQuoter implements Quoter {
+
     private List<String> messages;
 
-    public void setMessages(List<String> messages) {
-        this.messages = messages;
+
+    @Value("${terminator}")
+    public void setMessages(String[] messages, @Value("${JAVA_HOME}") String javaHome) {
+        System.out.println("javaHome = " + javaHome);
+        this.messages = Arrays.asList(messages);
     }
 
     @PreDestroy
-    public void killAll(){
+    public void killAll() {
         System.out.println("You are terminated...");
     }
 

@@ -5,6 +5,8 @@ import mySpring.Transcational;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.cglib.proxy.Proxy;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.management.*;
@@ -15,6 +17,7 @@ import java.util.Map;
 /**
  * Created by Evegeny on 17/07/2016.
  */
+@Component
 public class BenchmarkAnnotationBeanPostProcessor implements BeanPostProcessor {
     private Map<String, Class> map = new HashMap<>();
     private BenchmarkController benchmarkController = new BenchmarkController();
