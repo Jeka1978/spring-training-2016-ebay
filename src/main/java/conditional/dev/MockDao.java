@@ -1,7 +1,8 @@
-package profiles.dev;
+package conditional.dev;
 
+import conditional.Dao;
 import org.springframework.stereotype.Repository;
-import profiles.Dao;
+
 
 /**
  * Created by Evegeny on 27/07/2016.
