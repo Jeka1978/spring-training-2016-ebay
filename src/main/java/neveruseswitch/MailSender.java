@@ -20,7 +20,7 @@ public class MailSender {
     private Map<Integer,MailGenerator> map = new HashMap<>();
 
     @Autowired
-    public void initMap(List<MailGenerator> mailGenerators) {
+    private void initMap(List<MailGenerator> mailGenerators) {
         for (MailGenerator mailGenerator : mailGenerators) {
             int mailCode = mailGenerator.mailCode();
             if (map.containsKey(mailCode)) {

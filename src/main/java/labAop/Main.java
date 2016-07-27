@@ -9,10 +9,16 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class Main {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("labAop");
-        try {
-            context.getBean(SomeService.class).doX();
+        context.getBean(OneService.class).doX();
+       /* try {
+            context.getBean(AnotherService.class).doSomething();
         } catch (Exception e) {
             System.out.println("handling exception");
         }
+        try {
+            context.getBean(AnotherService.class).doSomething();
+        } catch (Exception e) {
+            System.out.println("handling exception");
+        }*/
     }
 }
